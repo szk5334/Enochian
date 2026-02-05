@@ -347,6 +347,107 @@
             color: #555;
         }
         
+        /* Vertical flow diagram (descent chains) */
+        .flow-diagram .vflow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .flow-diagram .vflow-step {
+            padding: 8px 20px;
+            border: 1px solid #000;
+            background: #fff;
+            font-size: 14px;
+            max-width: 500px;
+            text-align: center;
+        }
+        .flow-diagram .vflow-step.primary {
+            font-weight: bold;
+            border-width: 2px;
+        }
+        .flow-diagram .vflow-step.subtle {
+            border-style: dashed;
+            border-color: #888;
+            color: #444;
+        }
+        .flow-diagram .vflow-group {
+            padding: 8px 20px;
+            border: 1px solid #999;
+            border-left: 3px solid #999;
+            background: #f5f5f5;
+            font-size: 13px;
+            text-align: left;
+            max-width: 500px;
+        }
+        .flow-diagram .vflow-arrow {
+            font-size: 18px;
+            color: #000;
+            line-height: 1;
+            padding: 4px 0;
+        }
+        .flow-diagram .vflow-note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        .flow-diagram .vflow-merge {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 60px;
+            width: 100%;
+        }
+        .flow-diagram .vflow-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            flex: 0 1 auto;
+        }
+        .flow-diagram .vflow-connector {
+            width: 2px;
+            height: 20px;
+            background: #000;
+        }
+        .flow-diagram .vflow-hconnector {
+            height: 2px;
+            background: #000;
+            align-self: stretch;
+        }
+        .flow-diagram .info-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 16px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .flow-diagram .info-grid .label {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .flow-diagram .info-grid .desc {
+            color: #444;
+        }
+        .flow-diagram .mapping-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin: 6px 0;
+            font-size: 14px;
+        }
+        .flow-diagram .mapping-row .map-from {
+            font-weight: bold;
+            text-align: right;
+            min-width: 200px;
+        }
+        .flow-diagram .mapping-row .map-arrow {
+            color: #888;
+        }
+        .flow-diagram .mapping-row .map-to {
+            text-align: left;
+        }
+        
         /* Subangle Grid Table */
         .subangle-grid {
             border-collapse: collapse;
@@ -706,6 +807,24 @@
             
             .flow-diagram .flow-arrow {
                 transform: rotate(90deg);
+            }
+            .flow-diagram .vflow-merge {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            .flow-diagram .vflow-step,
+            .flow-diagram .vflow-group {
+                max-width: 100%;
+                font-size: 13px;
+            }
+            .flow-diagram .mapping-row {
+                flex-direction: column;
+                gap: 2px;
+            }
+            .flow-diagram .mapping-row .map-from {
+                text-align: left;
+                min-width: unset;
             }
             
             .diagram-row {
@@ -39014,15 +39133,38 @@ Rows 3-6:       Servient Section (excluding column 3)</div>
             <div class="recipe-block" id="sec-13-5-tablet-union">
                 <p class="recipe-title">The Tablet of Union</p>
                 
-                <pre class="grid-display">+-------------------+
-| e | x | a | r | p |
-|---+---+---+---+---|
-| h | C | o | m | a |
-|---+---+---+---+---|
-| n | a | n | T | a |
-|---+---+---+---+---|
-| b | i | t | o | m |
-+-------------------+</pre>
+                
+                <table class="tablet-grid">
+                    <tr>
+                        <td>e</td>
+                        <td>x</td>
+                        <td>a</td>
+                        <td>r</td>
+                        <td>p</td>
+                    </tr>
+                    <tr>
+                        <td>h</td>
+                        <td>C</td>
+                        <td>o</td>
+                        <td>m</td>
+                        <td>a</td>
+                    </tr>
+                    <tr>
+                        <td>n</td>
+                        <td>a</td>
+                        <td>n</td>
+                        <td>T</td>
+                        <td>a</td>
+                    </tr>
+                    <tr>
+                        <td>b</td>
+                        <td>i</td>
+                        <td>t</td>
+                        <td>o</td>
+                        <td>m</td>
+                    </tr>
+                </table>
+
             </div>
             
             <!-- Individual Subangles -->
@@ -39033,250 +39175,778 @@ Rows 3-6:       Servient Section (excluding column 3)</div>
                 <p><strong>RED WATCHTOWER (Upper Left)</strong></p>
                 
                 <p><em>Red → Red (Upper Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|r   Z | i | l   a|
-|------+   +------|
-|a   r   d   Z   a|
-|------+   +------|
-|c   z | o | n   s|
-|      |   |      |
-|T   o | i | T   t|
-|      |   |      |
-|S   i | g | a   s|
-|      |   |      |
-|f   m | o | n   d|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">r</td>
+                        <td>Z</td>
+                        <td class="cross-vertical">i</td>
+                        <td>l</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">a</td>
+                        <td class="cross-horizontal">r</td>
+                        <td class="cross-center">d</td>
+                        <td class="cross-horizontal">Z</td>
+                        <td class="col-5 cross-horizontal">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">c</td>
+                        <td>z</td>
+                        <td class="cross-vertical">o</td>
+                        <td>n</td>
+                        <td class="col-5">s</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">T</td>
+                        <td>o</td>
+                        <td class="cross-vertical">i</td>
+                        <td>T</td>
+                        <td class="col-5">t</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">S</td>
+                        <td>i</td>
+                        <td class="cross-vertical">g</td>
+                        <td>a</td>
+                        <td class="col-5">s</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">f</td>
+                        <td>m</td>
+                        <td class="cross-vertical">o</td>
+                        <td>n</td>
+                        <td class="col-5">d</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Red → White (Upper Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|y   t | l | p   a|
-|------+   +------|
-|p   a   L   a   m|
-|------+   +------|
-|o   Y | a | u   b|
-|      |   |      |
-|P   a | c | o   C|
-|      |   |      |
-|r   b | z | n   h|
-|      |   |      |
-|d   i | a | r   i|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">y</td>
+                        <td>t</td>
+                        <td class="cross-vertical">l</td>
+                        <td>p</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">p</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="cross-center">L</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="col-5 cross-horizontal">m</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">o</td>
+                        <td>Y</td>
+                        <td class="cross-vertical">a</td>
+                        <td>u</td>
+                        <td class="col-5">b</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">P</td>
+                        <td>a</td>
+                        <td class="cross-vertical">c</td>
+                        <td>o</td>
+                        <td class="col-5">C</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">r</td>
+                        <td>b</td>
+                        <td class="cross-vertical">z</td>
+                        <td>n</td>
+                        <td class="col-5">h</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">d</td>
+                        <td>i</td>
+                        <td class="cross-vertical">a</td>
+                        <td>r</td>
+                        <td class="col-5">i</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Red → Black (Lower Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|c   N | a | b   a|
-|------+   +------|
-|O   i   i   i   t|
-|------+   +------|
-|A   b | a | m   o|
-|      |   |      |
-|N   a | o | c   O|
-|      |   |      |
-|o   c | a | n   m|
-|      |   |      |
-|S   h | i | a   l|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">c</td>
+                        <td>N</td>
+                        <td class="cross-vertical">a</td>
+                        <td>b</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">O</td>
+                        <td class="cross-horizontal">i</td>
+                        <td class="cross-center">i</td>
+                        <td class="cross-horizontal">i</td>
+                        <td class="col-5 cross-horizontal">t</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">A</td>
+                        <td>b</td>
+                        <td class="cross-vertical">a</td>
+                        <td>m</td>
+                        <td class="col-5">o</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">N</td>
+                        <td>a</td>
+                        <td class="cross-vertical">o</td>
+                        <td>c</td>
+                        <td class="col-5">O</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">o</td>
+                        <td>c</td>
+                        <td class="cross-vertical">a</td>
+                        <td>n</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">S</td>
+                        <td>h</td>
+                        <td class="cross-vertical">i</td>
+                        <td>a</td>
+                        <td class="col-5">l</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Red → Green (Lower Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|x   g | a | z   d|
-|------+   +------|
-|a   l   O   a   i|
-|------+   +------|
-|a   C | u | c   a|
-|      |   |      |
-|n   p | r | a   T|
-|      |   |      |
-|o   t | r | o   i|
-|      |   |      |
-|p   m | z | o   x|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">x</td>
+                        <td>g</td>
+                        <td class="cross-vertical">a</td>
+                        <td>z</td>
+                        <td class="col-5">d</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">a</td>
+                        <td class="cross-horizontal">l</td>
+                        <td class="cross-center">O</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="col-5 cross-horizontal">i</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">a</td>
+                        <td>C</td>
+                        <td class="cross-vertical">u</td>
+                        <td>c</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">n</td>
+                        <td>p</td>
+                        <td class="cross-vertical">r</td>
+                        <td>a</td>
+                        <td class="col-5">T</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">o</td>
+                        <td>t</td>
+                        <td class="cross-vertical">r</td>
+                        <td>o</td>
+                        <td class="col-5">i</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">p</td>
+                        <td>m</td>
+                        <td class="cross-vertical">z</td>
+                        <td>o</td>
+                        <td class="col-5">x</td>
+                    </tr>
+                </table>
+
 
                 <p><strong>WHITE WATCHTOWER (Upper Right)</strong></p>
                 
                 <p><em>White → Red (Upper Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|T   a | O | A   d|
-|------+   +------|
-|o   a   l   c   o|
-|------+   +------|
-|T   a | g | c   o|
-|      |   |      |
-|n   h | o | d   D|
-|      |   |      |
-|f   a | t | A   x|
-|      |   |      |
-|S   a | a | i   z|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">T</td>
+                        <td>a</td>
+                        <td class="cross-vertical">O</td>
+                        <td>A</td>
+                        <td class="col-5">d</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">o</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="cross-center">l</td>
+                        <td class="cross-horizontal">c</td>
+                        <td class="col-5 cross-horizontal">o</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">T</td>
+                        <td>a</td>
+                        <td class="cross-vertical">g</td>
+                        <td>c</td>
+                        <td class="col-5">o</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">n</td>
+                        <td>h</td>
+                        <td class="cross-vertical">o</td>
+                        <td>d</td>
+                        <td class="col-5">D</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">f</td>
+                        <td>a</td>
+                        <td class="cross-vertical">t</td>
+                        <td>A</td>
+                        <td class="col-5">x</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">S</td>
+                        <td>a</td>
+                        <td class="cross-vertical">a</td>
+                        <td>i</td>
+                        <td class="col-5">z</td>
+                    </tr>
+                </table>
+
 
                 <p><em>White → White (Upper Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|t   D | n | i   m|
-|------+   +------|
-|o   m   e   b   b|
-|------+   +------|
-|i   n | l | G   m|
-|      |   |      |
-|l   a | a | o   c|
-|      |   |      |
-|V   s | P | s   N|
-|      |   |      |
-|r   V | r | o   i|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">t</td>
+                        <td>D</td>
+                        <td class="cross-vertical">n</td>
+                        <td>i</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">o</td>
+                        <td class="cross-horizontal">m</td>
+                        <td class="cross-center">e</td>
+                        <td class="cross-horizontal">b</td>
+                        <td class="col-5 cross-horizontal">b</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">i</td>
+                        <td>n</td>
+                        <td class="cross-vertical">l</td>
+                        <td>G</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">l</td>
+                        <td>a</td>
+                        <td class="cross-vertical">a</td>
+                        <td>o</td>
+                        <td class="col-5">c</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">V</td>
+                        <td>s</td>
+                        <td class="cross-vertical">P</td>
+                        <td>s</td>
+                        <td class="col-5">N</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">r</td>
+                        <td>V</td>
+                        <td class="cross-vertical">r</td>
+                        <td>o</td>
+                        <td class="col-5">i</td>
+                    </tr>
+                </table>
+
 
                 <p><em>White → Black (Lower Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|M   a | m | g   l|
-|------+   +------|
-|o   l   a   a   D|
-|------+   +------|
-|p   a | L | c   o|
-|      |   |      |
-|n   d | a | z   N|
-|      |   |      |
-|i   i | d | P   o|
-|      |   |      |
-|x   r | i | n   h|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">M</td>
+                        <td>a</td>
+                        <td class="cross-vertical">m</td>
+                        <td>g</td>
+                        <td class="col-5">l</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">o</td>
+                        <td class="cross-horizontal">l</td>
+                        <td class="cross-center">a</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="col-5 cross-horizontal">D</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">p</td>
+                        <td>a</td>
+                        <td class="cross-vertical">L</td>
+                        <td>c</td>
+                        <td class="col-5">o</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">n</td>
+                        <td>d</td>
+                        <td class="cross-vertical">a</td>
+                        <td>z</td>
+                        <td class="col-5">N</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">i</td>
+                        <td>i</td>
+                        <td class="cross-vertical">d</td>
+                        <td>P</td>
+                        <td class="col-5">o</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">x</td>
+                        <td>r</td>
+                        <td class="cross-vertical">i</td>
+                        <td>n</td>
+                        <td class="col-5">h</td>
+                    </tr>
+                </table>
+
 
                 <p><em>White → Green (Lower Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|n   L | i | r   x|
-|------+   +------|
-|a   T   a   p   a|
-|------+   +------|
-|x   P | a | c   n|
-|      |   |      |
-|V   a | a | s   a|
-|      |   |      |
-|d   A | s | p   i|
-|      |   |      |
-|r   n | d | i   L|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">n</td>
+                        <td>L</td>
+                        <td class="cross-vertical">i</td>
+                        <td>r</td>
+                        <td class="col-5">x</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">a</td>
+                        <td class="cross-horizontal">T</td>
+                        <td class="cross-center">a</td>
+                        <td class="cross-horizontal">p</td>
+                        <td class="col-5 cross-horizontal">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">x</td>
+                        <td>P</td>
+                        <td class="cross-vertical">a</td>
+                        <td>c</td>
+                        <td class="col-5">n</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">V</td>
+                        <td>a</td>
+                        <td class="cross-vertical">a</td>
+                        <td>s</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">d</td>
+                        <td>A</td>
+                        <td class="cross-vertical">s</td>
+                        <td>p</td>
+                        <td class="col-5">i</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">r</td>
+                        <td>n</td>
+                        <td class="cross-vertical">d</td>
+                        <td>i</td>
+                        <td class="col-5">L</td>
+                    </tr>
+                </table>
+
 
                 <p><strong>BLACK WATCHTOWER (Lower Left)</strong></p>
                 
                 <p><em>Black → Red (Upper Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|b   O | a | Z   a|
-|------+   +------|
-|u   N   n   a   x|
-|------+   +------|
-|a   i | g | r   a|
-|      |   |      |
-|o   r | p | m   n|
-|      |   |      |
-|r   s | O | n   i|
-|      |   |      |
-|i   z | i | n   r|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">b</td>
+                        <td>O</td>
+                        <td class="cross-vertical">a</td>
+                        <td>Z</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">u</td>
+                        <td class="cross-horizontal">N</td>
+                        <td class="cross-center">n</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="col-5 cross-horizontal">x</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">a</td>
+                        <td>i</td>
+                        <td class="cross-vertical">g</td>
+                        <td>r</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">o</td>
+                        <td>r</td>
+                        <td class="cross-vertical">p</td>
+                        <td>m</td>
+                        <td class="col-5">n</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">r</td>
+                        <td>s</td>
+                        <td class="cross-vertical">O</td>
+                        <td>n</td>
+                        <td class="col-5">i</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">i</td>
+                        <td>z</td>
+                        <td class="cross-vertical">i</td>
+                        <td>n</td>
+                        <td class="col-5">r</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Black → White (Upper Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|p   h | a | R   a|
-|------+   +------|
-|S   o   n   d   n|
-|------+   +------|
-|a   m | a | g   g|
-|      |   |      |
-|g   b | e | a   l|
-|      |   |      |
-|r   l | e | m   u|
-|      |   |      |
-|i   a | M | h   l|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">p</td>
+                        <td>h</td>
+                        <td class="cross-vertical">a</td>
+                        <td>R</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">S</td>
+                        <td class="cross-horizontal">o</td>
+                        <td class="cross-center">n</td>
+                        <td class="cross-horizontal">d</td>
+                        <td class="col-5 cross-horizontal">n</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">a</td>
+                        <td>m</td>
+                        <td class="cross-vertical">a</td>
+                        <td>g</td>
+                        <td class="col-5">g</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">g</td>
+                        <td>b</td>
+                        <td class="cross-vertical">e</td>
+                        <td>a</td>
+                        <td class="col-5">l</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">r</td>
+                        <td>l</td>
+                        <td class="cross-vertical">e</td>
+                        <td>m</td>
+                        <td class="col-5">u</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">i</td>
+                        <td>a</td>
+                        <td class="cross-vertical">M</td>
+                        <td>h</td>
+                        <td class="col-5">l</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Black → Black (Lower Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|R   O | c | a   m|
-|------+   +------|
-|A   r   b   i   z|
-|------+   +------|
-|O   p | a | n   a|
-|      |   |      |
-|d   O | l | o   F|
-|      |   |      |
-|r   x | p | a   o|
-|      |   |      |
-|a   x | t | i   r|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">R</td>
+                        <td>O</td>
+                        <td class="cross-vertical">c</td>
+                        <td>a</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">A</td>
+                        <td class="cross-horizontal">r</td>
+                        <td class="cross-center">b</td>
+                        <td class="cross-horizontal">i</td>
+                        <td class="col-5 cross-horizontal">z</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">O</td>
+                        <td>p</td>
+                        <td class="cross-vertical">a</td>
+                        <td>n</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">d</td>
+                        <td>O</td>
+                        <td class="cross-vertical">l</td>
+                        <td>o</td>
+                        <td class="col-5">F</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">r</td>
+                        <td>x</td>
+                        <td class="cross-vertical">p</td>
+                        <td>a</td>
+                        <td class="col-5">o</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">a</td>
+                        <td>x</td>
+                        <td class="cross-vertical">t</td>
+                        <td>i</td>
+                        <td class="col-5">r</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Black → Green (Lower Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|i   a | s | o   m|
-|------+   +------|
-|i   l   p   i   z|
-|------+   +------|
-|m   S | m | a   L|
-|      |   |      |
-|i   a | n | b   a|
-|      |   |      |
-|i   z | i | x   p|
-|      |   |      |
-|s   t | r | i   m|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">i</td>
+                        <td>a</td>
+                        <td class="cross-vertical">s</td>
+                        <td>o</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">i</td>
+                        <td class="cross-horizontal">l</td>
+                        <td class="cross-center">p</td>
+                        <td class="cross-horizontal">i</td>
+                        <td class="col-5 cross-horizontal">z</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">m</td>
+                        <td>S</td>
+                        <td class="cross-vertical">m</td>
+                        <td>a</td>
+                        <td class="col-5">L</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">i</td>
+                        <td>a</td>
+                        <td class="cross-vertical">n</td>
+                        <td>b</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">i</td>
+                        <td>z</td>
+                        <td class="cross-vertical">i</td>
+                        <td>x</td>
+                        <td class="col-5">p</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">s</td>
+                        <td>t</td>
+                        <td class="cross-vertical">r</td>
+                        <td>i</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                </table>
+
 
                 <p><strong>GREEN WATCHTOWER (Lower Right)</strong></p>
                 
                 <p><em>Green → Red (Upper Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|d   o | n | p   a|
-|------+   +------|
-|o   l   o   a   G|
-|------+   +------|
-|O   P | a | m   n|
-|      |   |      |
-|a   b | l | s   T|
-|      |   |      |
-|s   c | m | i   a|
-|      |   |      |
-|V   a | r | s   G|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">d</td>
+                        <td>o</td>
+                        <td class="cross-vertical">n</td>
+                        <td>p</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">o</td>
+                        <td class="cross-horizontal">l</td>
+                        <td class="cross-center">o</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="col-5 cross-horizontal">G</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">O</td>
+                        <td>P</td>
+                        <td class="cross-vertical">a</td>
+                        <td>m</td>
+                        <td class="col-5">n</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">a</td>
+                        <td>b</td>
+                        <td class="cross-vertical">l</td>
+                        <td>s</td>
+                        <td class="col-5">T</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">s</td>
+                        <td>c</td>
+                        <td class="cross-vertical">m</td>
+                        <td>i</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">V</td>
+                        <td>a</td>
+                        <td class="cross-vertical">r</td>
+                        <td>s</td>
+                        <td class="col-5">G</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Green → White (Upper Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|a   n | V | a   a|
-|------+   +------|
-|o   b   a   v   a|
-|------+   +------|
-|G   m | d | n   m|
-|      |   |      |
-|e   c | a | o   p|
-|      |   |      |
-|A   m | l | o   x|
-|      |   |      |
-|b   r | i | a   p|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">a</td>
+                        <td>n</td>
+                        <td class="cross-vertical">V</td>
+                        <td>a</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">o</td>
+                        <td class="cross-horizontal">b</td>
+                        <td class="cross-center">a</td>
+                        <td class="cross-horizontal">v</td>
+                        <td class="col-5 cross-horizontal">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">G</td>
+                        <td>m</td>
+                        <td class="cross-vertical">d</td>
+                        <td>n</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">e</td>
+                        <td>c</td>
+                        <td class="cross-vertical">a</td>
+                        <td>o</td>
+                        <td class="col-5">p</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">A</td>
+                        <td>m</td>
+                        <td class="cross-vertical">l</td>
+                        <td>o</td>
+                        <td class="col-5">x</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">b</td>
+                        <td>r</td>
+                        <td class="cross-vertical">i</td>
+                        <td>a</td>
+                        <td class="col-5">p</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Green → Black (Lower Left Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|p   s | v | a   c|
-|------+   +------|
-|S   i   o   d   a|
-|------+   +------|
-|d   a | l | t   T|
-|      |   |      |
-|d   i | x | o   m|
-|      |   |      |
-|O   o | D | p   z|
-|      |   |      |
-|r   g | o | a   n|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">p</td>
+                        <td>s</td>
+                        <td class="cross-vertical">v</td>
+                        <td>a</td>
+                        <td class="col-5">c</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">S</td>
+                        <td class="cross-horizontal">i</td>
+                        <td class="cross-center">o</td>
+                        <td class="cross-horizontal">d</td>
+                        <td class="col-5 cross-horizontal">a</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">d</td>
+                        <td>a</td>
+                        <td class="cross-vertical">l</td>
+                        <td>t</td>
+                        <td class="col-5">T</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">d</td>
+                        <td>i</td>
+                        <td class="cross-vertical">x</td>
+                        <td>o</td>
+                        <td class="col-5">m</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">O</td>
+                        <td>o</td>
+                        <td class="cross-vertical">D</td>
+                        <td>p</td>
+                        <td class="col-5">z</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">r</td>
+                        <td>g</td>
+                        <td class="cross-vertical">o</td>
+                        <td>a</td>
+                        <td class="col-5">n</td>
+                    </tr>
+                </table>
+
 
                 <p><em>Green → Green (Lower Right Subangle)</em></p>
-                <pre class="grid-display">+-----------------+
-|Z   i | r | Z   a|
-|------+   +------|
-|n   r   z   f   m|
-|------+   +------|
-|a   d | i | r   e|
-|      |   |      |
-|s   i | o | s   p|
-|      |   |      |
-|p   a | n | l   i|
-|      |   |      |
-|A   C | r | a   r|
-+-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr class="row-1">
+                        <td class="col-1">Z</td>
+                        <td>i</td>
+                        <td class="cross-vertical">r</td>
+                        <td>Z</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td class="col-1 cross-horizontal">n</td>
+                        <td class="cross-horizontal">r</td>
+                        <td class="cross-center">z</td>
+                        <td class="cross-horizontal">f</td>
+                        <td class="col-5 cross-horizontal">m</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">a</td>
+                        <td>d</td>
+                        <td class="cross-vertical">i</td>
+                        <td>r</td>
+                        <td class="col-5">e</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">s</td>
+                        <td>i</td>
+                        <td class="cross-vertical">o</td>
+                        <td>s</td>
+                        <td class="col-5">p</td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">p</td>
+                        <td>a</td>
+                        <td class="cross-vertical">n</td>
+                        <td>l</td>
+                        <td class="col-5">i</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td class="col-1">A</td>
+                        <td>C</td>
+                        <td class="cross-vertical">r</td>
+                        <td>a</td>
+                        <td class="col-5">r</td>
+                    </tr>
+                </table>
+
             </div>
             
             <p class="section-divider">• • •</p>
@@ -40570,35 +41240,36 @@ Elemental Columns:        Ruling Angel (Divine Form)</div>
                 
                 <p>Power flows from Source through this veil:</p>
                 
-                <div class="config-block">    Source (Operator)
-        |
-        v
-    Three God Names (humanity's understanding of the Divine)
-        |
-        v
-    King (solar director and conductor)
-        |
-        v
-    Six Seniors (planetary densities attenuating God energy into forms
-                 reality can understand)
-        |
-        v
-    Mighty Prince (receptive solar aspect, tighter spiral, gathers power)
-        |
-        v
-    Prince of the Subangle (distributes to the Calvary Cross)
-        |
-        v
-    Calvary Cross Arms: Commanding Angel (Divine Compelling Will)
-    Calvary Cross Spine: Summoning Angel (Divine Authority)</div>
+                <div class="flow-diagram">
+                <div class="diagram-title">Polarity 1: God Name Descent</div>
+                <div class="vflow">
+                    <div class="vflow-step primary">Source (Operator)</div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">Three God Names<br><span class="vflow-note">humanity's understanding of the Divine</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">King<br><span class="vflow-note">solar director and conductor</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">Six Seniors<br><span class="vflow-note">planetary densities attenuating God energy into forms reality can understand</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">Mighty Prince<br><span class="vflow-note">receptive solar aspect, tighter spiral, gathers power</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">Prince of the Subangle<br><span class="vflow-note">distributes to the Calvary Cross</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-group">Calvary Cross Arms: <strong>Commanding Angel</strong> (Divine Compelling Will)<br>Calvary Cross Spine: <strong>Summoning Angel</strong> (Divine Authority)</div>
+                </div>
+                </div>
                 
                 <p>The King and Mighty Prince spiral clockwise around the Great Cross. The Mighty Prince's spiral is tighter, carrying an attenuated frequency. The Prince of the Subangle spirals around the Calvary Cross, mimicking this structure at a smaller scale.</p>
                 
                 <p>From the Calvary Cross, energy distributes to the angel names:</p>
                 
-                <div class="config-block">Above the arms:     Kerubic Angel (Divine Intent)
-Below the arms:     Servient Angel (Divine Action)
-Connecting them:    Ruling Angel (Divine Form)</div>
+                <div class="flow-diagram">
+                <div class="info-grid">
+                    <div class="label">Above the arms:</div><div class="desc">Kerubic Angel (Divine Intent)</div>
+                    <div class="label">Below the arms:</div><div class="desc">Servient Angel (Divine Action)</div>
+                    <div class="label">Connecting them:</div><div class="desc">Ruling Angel (Divine Form)</div>
+                </div>
+                </div>
                 
                 <h5>Polarity 2: Source's Direct Emanation (Tablet of Union Descent)</h5>
                 
@@ -40606,39 +41277,44 @@ Connecting them:    Ruling Angel (Divine Form)</div>
                 
                 <p>Power flows directly from the Tablet of Union through the Archangels:</p>
                 
-                <div class="config-block">    Tablet of Union
-        |
-        v
-    Archangel of Archangels (center column: AONT/ONTA/NTAO/TAON)
-    Ruling Archangel (elemental column: EHNB/XCAI/RMTO/PAAM etc.)
-    Servient Archangel (elemental row: EXARP/HCOMA/NANTA/BITOM etc.)</div>
+                <div class="flow-diagram">
+                <div class="diagram-title">Polarity 2: Tablet of Union Descent</div>
+                <div class="vflow">
+                    <div class="vflow-step primary">Tablet of Union</div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-group"><strong>Archangel of Archangels</strong> <span class="vflow-note">(center column: AONT/ONTA/NTAO/TAON)</span><br><strong>Ruling Archangel</strong> <span class="vflow-note">(elemental column: EHNB/XCAI/RMTO/PAAM etc.)</span><br><strong>Servient Archangel</strong> <span class="vflow-note">(elemental row: EXARP/HCOMA/NANTA/BITOM etc.)</span></div>
+                </div>
+                </div>
                 
                 <p>These three Archangels provide the prefixes for the Subangular names:</p>
                 
-                <div class="config-block">Archangel of Archangels → prefix for Archangelic Kerubic Angel
-Ruling Archangel → prefix for Archangelic Ruling Angel
-Servient Archangel → prefix for Archangelic Servient Angel
-                      (and for all four Cacodaemons)</div>
+                <div class="flow-diagram">
+                <div class="mapping-row"><span class="map-from">Archangel of Archangels</span> <span class="map-arrow">→</span> <span class="map-to">prefix for Archangelic Kerubic Angel</span></div>
+                <div class="mapping-row"><span class="map-from">Ruling Archangel</span> <span class="map-arrow">→</span> <span class="map-to">prefix for Archangelic Ruling Angel</span></div>
+                <div class="mapping-row"><span class="map-from">Servient Archangel</span> <span class="map-arrow">→</span> <span class="map-to">prefix for Archangelic Servient Angel<br><span class="vflow-note">(and for all four Cacodaemons)</span></span></div>
+                </div>
                 
                 <p>The Archangelic names are the "wires" carrying Tablet of Union energy:</p>
                 
-                <div class="config-block">Archangelic Kerubic Angel (prefix + base Kerubic)
-Archangelic Ruling Angel (prefix + base Ruling)
-Archangelic Servient Angel (prefix + base Servient)
-    |
-    v
-Kerubic Regent Cacodaemon (consequence of intent enacted)
-Kerubic Rooted Cacodaemon (reaction to consequence)
-Servient Regent Cacodaemon (consequence of action taken)
-Servient Rooted Cacodaemon (reaction to consequence)</div>
+                <div class="flow-diagram">
+                <div class="vflow">
+                    <div class="vflow-group"><strong>Archangelic Kerubic Angel</strong> (prefix + base Kerubic)<br><strong>Archangelic Ruling Angel</strong> (prefix + base Ruling)<br><strong>Archangelic Servient Angel</strong> (prefix + base Servient)</div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-group" style="border-left-color: #666;">Kerubic Regent Cacodaemon <span class="vflow-note">(consequence of intent enacted)</span><br>Kerubic Rooted Cacodaemon <span class="vflow-note">(reaction to consequence)</span><br>Servient Regent Cacodaemon <span class="vflow-note">(consequence of action taken)</span><br>Servient Rooted Cacodaemon <span class="vflow-note">(reaction to consequence)</span></div>
+                </div>
+                </div>
                 
                 <h5>The Mercurial Connection</h5>
                 
                 <p>The Mercurial versions of the Kerubic, Ruling, and Servient Angels are mid-fixed with a letter from the Calvary Cross:</p>
                 
-                <div class="config-block">Mercurial Kerubic:   Base Kerubic + letter from Row 1, Column 3
-Mercurial Ruling:    Base Ruling + letter from Row 2 in same column
-Mercurial Servient:  Base Servient + letter from Column 3 in same row</div>
+                <div class="flow-diagram">
+                <div class="info-grid">
+                    <div class="label">Mercurial Kerubic:</div><div class="desc">Base Kerubic + letter from Row 1, Column 3</div>
+                    <div class="label">Mercurial Ruling:</div><div class="desc">Base Ruling + letter from Row 2 in same column</div>
+                    <div class="label">Mercurial Servient:</div><div class="desc">Base Servient + letter from Column 3 in same row</div>
+                </div>
+                </div>
                 
                 <p>The Mercurial names are the "wires" carrying Calvary Cross energy—the attenuated God energy that descended through the King, Seniors, and Princes.</p>
                 
@@ -40646,9 +41322,13 @@ Mercurial Servient:  Base Servient + letter from Column 3 in same row</div>
                 
                 <p>The base names (Kerubic, Ruling, Servient) share their four letters with both the Archangelic versions and the Mercurial versions:</p>
                 
-                <div class="config-block">Archangelic Kerubic = prefix + [base Kerubic letters]
-Mercurial Kerubic = [base Kerubic letters] + mid-fix
-Base Kerubic = the shared four letters</div>
+                <div class="flow-diagram">
+                <div class="info-grid">
+                    <div class="label">Archangelic Kerubic =</div><div class="desc">prefix + [base Kerubic letters]</div>
+                    <div class="label">Mercurial Kerubic =</div><div class="desc">[base Kerubic letters] + mid-fix</div>
+                    <div class="label">Base Kerubic =</div><div class="desc">the shared four letters</div>
+                </div>
+                </div>
                 
                 <p>This overlap makes the base names the connection point where both polarities converge. The Archangelic names carry Tablet of Union energy. The Mercurial names carry Calvary Cross energy. The base names receive both.</p>
                 
@@ -40656,46 +41336,63 @@ Base Kerubic = the shared four letters</div>
                 
                 <p>The Ruling Angel bridges the Kerubic and Servient. But both the Kerubic and Servient Angels—along with their Cacodaemons—are points of contact with reality. They work together as a scalpel to carve a path through existence:</p>
                 
-                <div class="config-block">Kerubic Angel:   Connection to the Ethereal world ("Above")
-                 Intent manifesting in the realm of mind and spirit
-
-Servient Angel:  Connection to the Corporeal world ("Below")
-                 Action manifesting in the realm of matter and form</div>
+                <div class="flow-diagram">
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; align-items: flex-start; gap: 16px;">
+                        <div style="font-weight: bold; min-width: 120px; text-align: right;">Kerubic Angel:</div>
+                        <div>Connection to the Ethereal world ("Above")<br><span class="vflow-note">Intent manifesting in the realm of mind and spirit</span></div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 16px;">
+                        <div style="font-weight: bold; min-width: 120px; text-align: right;">Servient Angel:</div>
+                        <div>Connection to the Corporeal world ("Below")<br><span class="vflow-note">Action manifesting in the realm of matter and form</span></div>
+                    </div>
+                </div>
+                </div>
                 
                 <p>As above, so below. The working cuts through both realms simultaneously. The Kerubic circuit shapes the ethereal conditions; the Servient circuit shapes the corporeal conditions. Together, they produce complete manifestation.</p>
                 
                 <h5>The Complete Circuit</h5>
                 
-                <div class="config-block">            POLARITY 1                              POLARITY 2
-            (God Names)                           (Tablet of Union)
-                |                                       |
-                v                                       v
-        King → Seniors → Mighty Prince      Archangel of Archangels
-                |                                 Ruling Archangel
-                v                                Servient Archangel
-        Prince of Subangle                              |
-                |                                       v
-                v                               Archangelic Subangular Angels
-          Calvary Cross                              and Cacodaemons
-      (Commanding, Summoning)                (Tablet of Union/Black Cross wires)
-                |                                       |
-                v                                       |
-        Mercurial Angels                                |
-      (Calvary Cross wires)                             |
-                |                                       |
-                +-------------------+-------------------+
-                                    |
-                                    v
-                               Base Angels
-                        (Kerubic, Ruling, Servient)
-                           [connection point]
-                                    |
-                                    v
-                    Kerubic Angel + Cacodaemons
-                    (Ethereal contact / "Above")
-                                    |
-                    Servient Angel + Cacodaemons
-                    (Corporeal contact / "Below")</div>
+                <div class="flow-diagram">
+                <div class="diagram-title">The Complete Circuit</div>
+                <div class="diagram-subtitle">Both polarities converge at the Base Angels</div>
+                
+                <div class="vflow-merge">
+                    <div class="vflow-col">
+                        <div style="font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Polarity 1</div>
+                        <div class="vflow-step subtle" style="font-size: 13px;">God Names</div>
+                        <div class="vflow-arrow">▼</div>
+                        <div class="vflow-step" style="font-size: 13px;">King → Seniors → Mighty Prince</div>
+                        <div class="vflow-arrow">▼</div>
+                        <div class="vflow-step" style="font-size: 13px;">Prince of Subangle</div>
+                        <div class="vflow-arrow">▼</div>
+                        <div class="vflow-step" style="font-size: 13px;">Calvary Cross<br><span class="vflow-note">Commanding, Summoning</span></div>
+                        <div class="vflow-arrow">▼</div>
+                        <div class="vflow-step" style="font-size: 13px;">Mercurial Angels<br><span class="vflow-note">Calvary Cross wires</span></div>
+                        <div class="vflow-connector"></div>
+                    </div>
+                    <div class="vflow-col">
+                        <div style="font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Polarity 2</div>
+                        <div class="vflow-step subtle" style="font-size: 13px;">Tablet of Union</div>
+                        <div class="vflow-arrow">▼</div>
+                        <div class="vflow-step" style="font-size: 13px;">Archangel of Archangels<br>Ruling Archangel<br>Servient Archangel</div>
+                        <div class="vflow-arrow">▼</div>
+                        <div class="vflow-step" style="font-size: 13px;">Archangelic Subangular Angels<br>and Cacodaemons<br><span class="vflow-note">Tablet of Union / Black Cross wires</span></div>
+                        <div class="vflow-connector" style="height: 88px;"></div>
+                    </div>
+                </div>
+                
+                <div class="vflow-hconnector" style="margin: 0 15%;"></div>
+                
+                <div class="vflow" style="margin-top: 0;">
+                    <div class="vflow-connector"></div>
+                    <div class="vflow-step primary">Base Angels<br>(Kerubic, Ruling, Servient)<br><span class="vflow-note">[connection point]</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">Kerubic Angel + Cacodaemons<br><span class="vflow-note">Ethereal contact / "Above"</span></div>
+                    <div class="vflow-arrow">▼</div>
+                    <div class="vflow-step">Servient Angel + Cacodaemons<br><span class="vflow-note">Corporeal contact / "Below"</span></div>
+                </div>
+                </div>
             </div>
             
             <!-- IV. The Cacodaemons -->
@@ -40858,20 +41555,66 @@ Micro Water = Column 2 (first letter column)</div>
                 
                 <p>The fully grafted Subangle with prefixes:</p>
                 
-                <pre class="config-block">     e   h       n   b
-    +-----------------+
-  o |d   h | O | R   a|
-    |------+   +------|
-    |a   a   b   c   o|
-    |------+   +------|
-  h |O   m | g | g   n|
-    |      |   |      |
-  C |a   b | o | a   T|
-    |      |   |      |
-  m |s   l | t | m   o|
-    |      |   |      |
-  a |V   a | a | h   G|
-    +-----------------+</pre>
+                
+                <table class="subangle-grid mono" style="margin: 0 auto;">
+                    <tr>
+                        <td style="border: none; background: none;"></td>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">e</td>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">h</td>
+                        <td style="border: none; background: none;"></td>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">n</td>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">b</td>
+                    </tr>
+                    <tr class="row-1">
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">o</td>
+                        <td class="col-1">d</td>
+                        <td>h</td>
+                        <td class="cross-vertical">O</td>
+                        <td>R</td>
+                        <td class="col-5">a</td>
+                    </tr>
+                    <tr class="row-2">
+                        <td style="border: none; background: none;"></td>
+                        <td class="col-1 cross-horizontal">a</td>
+                        <td class="cross-horizontal">a</td>
+                        <td class="cross-center">b</td>
+                        <td class="cross-horizontal">c</td>
+                        <td class="col-5 cross-horizontal">o</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">h</td>
+                        <td class="col-1">O</td>
+                        <td>m</td>
+                        <td class="cross-vertical">g</td>
+                        <td>g</td>
+                        <td class="col-5">n</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">C</td>
+                        <td class="col-1">a</td>
+                        <td>b</td>
+                        <td class="cross-vertical">o</td>
+                        <td>a</td>
+                        <td class="col-5">T</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">m</td>
+                        <td class="col-1">s</td>
+                        <td>l</td>
+                        <td class="cross-vertical">t</td>
+                        <td>m</td>
+                        <td class="col-5">o</td>
+                    </tr>
+                    <tr class="row-6">
+                        <td style="border: none; background: none; font-weight: bold; color: #666;">a</td>
+                        <td class="col-1">V</td>
+                        <td>a</td>
+                        <td class="cross-vertical">a</td>
+                        <td>h</td>
+                        <td class="col-5">G</td>
+                    </tr>
+                </table>
+
                 
                 <p>The 24 letters contributing to name derivation:</p>
                 
@@ -40897,7 +41640,8 @@ Column 2 - First letter column (3):
                 
                 <p>Arranged showing the source structure:</p>
                 
-                <pre class="config-block">         h
+                
+                <div class="config-block" style="white-space: pre; font-family: 'Courier New', monospace;">h
     +-----------------+
   o |d   h | O | R   a|
     |------+   +------|
@@ -40918,7 +41662,8 @@ Column 2 - First letter column (3):
            m   g        
            b   o        
    m   s   l*  t   m   o
-           a   a</pre>
+           a   a</div>
+
                 
                 <h5>The Creation Process</h5>
                 
